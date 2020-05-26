@@ -1,0 +1,14 @@
+{
+  "name": "state-machine",
+  "version": "1.0.0",
+  "description": "State machine application",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles"
+  },
+  "author": "Maor Mashiach",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
