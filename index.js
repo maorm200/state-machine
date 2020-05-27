@@ -1,20 +1,21 @@
+proccessed_events = '';
 class Call {
-    async call(payload){
+    async EventHandler(event) {
         let items = {
-            'A': 'Event A received',
-            'AB':'Event A and B received',
-            'ABC': 'Event C received after A & B',
-            'ABCD': 'Event D received after A,B,C'
-        }
-        for(let index in items) {
-            const key = index
-            const value = items[index];
-            if (payload === key){
-                return value;
-            }
+            'A': ['Event A received'],
+            'AB': ['Event A and B received'],
+            'ABC': ['Event C received after A & B', 'Call disconnected'],
+            'ABCD': ['Event D received after A,B,C', '*']
+        };
+        proccessed_events = proccessed_events + event;
+        if (items[proccessed_events][items[proccessed_events].length - 1] === '*') {
+            const returnValue = items[proccessed_events];
+            proccessed_events = '';
+            return returnValue;
+        } else {
+            return items[proccessed_events];
         }
     }
 }
-
 
 module.exports = Call;
