@@ -1,4 +1,3 @@
-
 class Client {
     async process (event){
         const events = await index.EventHandler(event);

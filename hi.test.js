@@ -1,22 +1,18 @@
 const Index = require('./index');
 const Client = require('./client');
 
-
 index = new Index();
 client = new Client();
 
-output1 =
-
 test('test1', async() => {
-    await client.process('A');
-    await client.process('B');
-    await client.process('C');
-    await client.process('D');
-    await client.process('A');
-    await client.process('B');
-    await client.process('C');
-    await client.process('D');
-    // await client.process('B');
-    // await client.process('C');
-    // await client.process('D');
-})
+    await client.process('L1CN-');
+    await client.process('L1UCo-');
+    await client.process('L1UCo-');
+    await client.process('L1UCd-');
+    await client.process('L1UCm-');
+    await client.process('L1CN-');
+    await client.process('L1UCo-');
+    await client.process('L1UCo-');
+    await client.process('L1UCd-');
+    await client.process('L1UCm-');
+});

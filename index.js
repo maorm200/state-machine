@@ -1,20 +1,36 @@
-proccessed_events = '';
+let eventsHistory = '';
+let lastEvent = '';
 class Call {
-    async EventHandler(event) {
+    async EventHandler(newEvent) {
         let items = {
-            'A': ['Event A received'],
-            'AB': ['Event A and B received'],
-            'ABC': ['Event C received after A & B', 'Call disconnected'],
-            'ABCD': ['Event D received after A,B,C', '*']
+            'L1CN-': ['call.new'],
+            'L1CN-L1UCo-': ['call.connecting'],
+            'L1CN-L1UCo-@': ['DUPLICATE DETECTED: IGNORING'],
+            'L1CN-L1UCo-L1UCd-': ['call.connected'],
+            'L1CN-L1UCo-L1UCd-L1UCm-': ['call.completed', '*']
         };
-        proccessed_events = proccessed_events + event;
-        if (items[proccessed_events][items[proccessed_events].length - 1] === '*') {
-            const returnValue = items[proccessed_events];
-            proccessed_events = '';
+        let eHistory = await this.getEventHistory(eventsHistory, newEvent);
+        eventsHistory = eHistory;
+        if (items[eHistory][items[eHistory].length - 1] === '*') {
+            const returnValue = items[eHistory];
+            eventsHistory = '';
             return returnValue;
-        } else {
-            return items[proccessed_events];
         }
+        return items[eHistory];
+    }
+
+    async getEventHistory(eHistory, newEvent){
+        if (lastEvent === newEvent){
+            eHistory += '@';
+        }
+        else{
+            if (eHistory.endsWith('@')){
+                eHistory = eHistory.slice(0, -1);
+            }
+            eHistory += newEvent;
+        }
+        lastEvent = newEvent;
+        return eHistory;
     }
 }
 
