@@ -6,15 +6,17 @@ client = new Client();
 
 // Tests normal state
 test('normal-state', async() => {
-    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6' ,'L1CN-');
-    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUci-');
-    await client.process('70e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUne-');
-    await client.process('70e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUci-');
-    // await client.process('70e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUco-');
-    // await client.process('70e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUco-');
-    // await client.process('70e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUcc-');
-    // await client.process('70e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CC-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6' ,'L1CN-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUci-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUne-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUne-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUci-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUco-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUco-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUcc-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CC-');
 });
+
 
 test('concurrent-calls-normal-state', async() => {
     await client.process('L1CN-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');

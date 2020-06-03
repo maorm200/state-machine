@@ -1,9 +1,14 @@
 let callIdArray = []
-let callIdArrayCall2 = []
-let eventsHistoryDict =
-    [{'callIdArray': callIdArray, 'lastEvent': '', 'eventHistory': ''}];
-let eventsHistoryDictCall2 =
-    {'callIdArray': callIdArrayCall2, 'lastEvent': '', 'eventHistory': ''};
+// let eventHistoryDictionary =
+//     [{'callIdArray': callIdArray, 'lastEvent': '', 'eventHistory': ''}];
+// let eventActionDictionary2 =
+//     {'callIdArray': callIdArrayCall2, 'lastEvent': '', 'eventHistory': ''};
+
+var eventHistoryDictionary = {};
+// eventHistoryDictionary['84394894'] = {'lastEvent': '', 'eventHistory': ''};
+// eventHistoryDictionary['595995'] = {'lastEvent': '', 'eventHistory': ''}
+// console.log(eventHistoryDictionary)
+
 
 var items = require('./dictionary').items;
 var allowedEvents = require('./dictionary').allowedEvents;
@@ -12,70 +17,44 @@ var allowedEvents = require('./dictionary').allowedEvents;
 class Call {
     async EventHandler(callId, newEvent) {
         let eHistory = await this.getEventHistory(callId, newEvent);
-        var action = eHistory['eventHistory'];
-        if (action === undefined){
-            return [''];
+
+        // history does not exist in dictionary
+        if (!eHistory in eventHistoryDictionary){
+            console.log('Checking if eHistory in dictionary')
+            return ''
         }
-        if (end === '*') {
-            console.log('here')
-            var returnValue = action;
-            action = '';
-            return returnValue;
-        }
-        return items[action];
+        let action = items[eHistory];
+        // let end = action[action.length - 1];
+        //
+        // // if reached end with *, then
+        // if (end === '*') {
+        //     console.log('Found the *, reached the end');
+        //     return action;
+        // }
+        return action;
     }
 
     async getEventHistory(callId, newEvent){
-        // initialization of variables from the two dictionaries (for 2 calls)
-        let eHistory = eventsHistoryDict[0]['eventHistory'];
-        let eHistoryCall2 = eventsHistoryDictCall2['eventHistory'];
-        let lEvent = eventsHistoryDict[0]['lastEvent'];
-        let lEventCall2 = eventsHistoryDictCall2['lastEvent'];
-
-        // check if callId exists in eventHistory dictionary, and create new entry if not.
-        if(callIdArray.length === 0){
-            callIdArray.push(callId);
+        // if callId key doesn't exist in dictionary, then we add new key with the new callId
+        if (!eventHistoryDictionary.hasOwnProperty(callId)){
+            eventHistoryDictionary[callId] = {'lastEvent': '', 'eventHistory': ''};
         }
-
-        // checks if callId exists in callID array, if not, then we push to 2nd dictionary
-        if (!callIdArray.includes(callId)){
-            callIdArrayCall2[0] = callId;
-            lEventCall2 = newEvent;
-            eHistoryCall2 += newEvent;
-            eventsHistoryDict.push(eventsHistoryDictCall2);
-            eventsHistoryDictCall2['lastEvent'] = lEventCall2;
-            eventsHistoryDictCall2['eventHistory'] = eHistoryCall2;
+        // Initialization of variables from the dictionary
+        let eHistory = eventHistoryDictionary[callId]['eventHistory'];
+        let lastEvent = eventHistoryDictionary[callId]['lastEvent'];
+        if (lastEvent === newEvent){
+            eHistory += '@';
         }
-        // if same callID, then keep on adding to 1st dictionary
+        // console.log('newevent', newEvent, 'lastevent', lastEvent);
+        // Building elements into the dictionary, else is added if lastEvent doesn't equal new event
         else{
-            eHistory += newEvent
-            lEvent = newEvent;
-            eventsHistoryDict[0]['lastEvent'] = lEvent;
-            eventsHistoryDict[0]['eventHistory'] = eHistory;
+            eventHistoryDictionary[callId] = {'lastEvent' : newEvent, 'eventHistory': eHistory += newEvent};
         }
-
+        // console.log(eventHistoryDictionary);
+        lastEvent = newEvent;
+        console.log(eHistory)
         return eHistory;
     }
 }
-
-
-// async getEventHistory(callId, newEvent, eHistory){
-//     console.log(eHistory)
-//     if (!allowedEvents.includes(newEvent)){
-//         console.log(`Error, event ${newEvent} not found`);
-//         return eHistory;
-//     }
-//     if (eHistory['lastEvent'] === newEvent){
-//         eHistory += '@';
-//     } else {
-//         if (eHistory['eventHistory'].endsWith('@')){
-//             eHistory['eventHistory'] = eHistory['eventHistory'].slice(0, -1);
-//         }
-//         eHistory['eventHistory'] += newEvent;
-//         eHistory['callId'] = callId;
-//     }
-//     eHistory['lastEvent'] = newEvent;
-//     return eHistory;
-// }
 
 module.exports = Call;

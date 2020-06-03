@@ -4,7 +4,7 @@ let items = {
         // normal call
         'L1CN-': ['first leg created'],
         'L1CN-L1CUci-': [''],
-        'L1CN-L1CUci-L2CUne-': ['2nd leg created'],
+        'L1CN-L1CUci-L2CUne-L2CUne': ['2nd leg created'],
         'L1CN-L1CUci-L2CUne-@': ['DUPLICATE DETECTED: IGNORING'],
         'L1CN-L1CUci-L2CUne-L2CUci-': [''],
         'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-': ['2nd leg connected'],
