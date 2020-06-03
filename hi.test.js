@@ -4,8 +4,45 @@ const Client = require('./client');
 index = new Index();
 client = new Client();
 
+
 // Tests normal state
 test('normal-state', async() => {
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6' ,'L1CN-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUci-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUne-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUci-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUco-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUco-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUcc-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CC-');
+});
+
+//tests normal state with two concurrent calls
+test('normal-state-two-calls', async() => {
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6' ,'L1CN-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUci-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUne-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUne-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUci-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUco-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUco-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUcc-');
+    await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CC-');
+    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6' ,'L1CN-');
+    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUci-');
+    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUne-');
+    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUne-');
+    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUci-');
+    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6','L2CUco-');
+    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUco-');
+    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUcc-');
+    await client.process('50e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CC-');
+
+});
+
+
+// Tests duplicate feature (with @)
+test('normal-state-duplicates', async() => {
     await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6' ,'L1CN-');
     await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CUci-');
     await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L2CUne-');
@@ -17,27 +54,6 @@ test('normal-state', async() => {
     await client.process('40e056d4-85df-41c2-85eb-b4123a7b26f6', 'L1CC-');
 });
 
-
-test('concurrent-calls-normal-state', async() => {
-    await client.process('L1CN-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L1CUci-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L2CUne-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L2CUci-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L2CUco-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L1CUco-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L2CUcc-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L1CC-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L1CN-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L1CUci-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L2CUne-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L2CUci-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L2CUco-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L1CUco-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L2CUcc-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-    await client.process('L1CC-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
-
-
-});
 
 //Tests state when call connecting comes in first
 test('call-connecting-is-first', async() => {
