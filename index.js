@@ -4,11 +4,14 @@ var allowedEvents = require('./dictionary').allowedEvents;
 
 class Call {
     async EventHandler(callId, newEvent) {
+        //eHistory returns call to getEventHistory with parameters from our test(callId, newEvent)
         let eHistory = await this.getEventHistory(callId, newEvent);
+
         // history does not exist in dictionary
         if (!(eHistory in items)){
             return ''
         }
+
         // initialization of variables from imported dictionary
         let action = items[eHistory];
         let end = action[action.length - 1];
@@ -16,6 +19,8 @@ class Call {
         // if reached end with *, then exit process. Nothing else happens if more events show up.
         if (end === '*') {
             console.log('Found the *, reached the end');
+            eHistory += '*';
+            console.log(eHistory)
             process.exit();
             return action;
         }
