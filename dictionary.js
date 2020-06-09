@@ -2,59 +2,122 @@ let allowedEvents = ['L1CN-','L1CUci-', 'L2CUne-','L2CUci-', 'L2CUco-','L2CUcc-'
 
 let items = {
         // normal call
-        'L1CN-': ['first leg created'],
+        'L1CN-': [''],
+        'L1CN-@': [''], // allow duplicate call new events
         'L1CN-L1CUci-': [''],
-        'L1CN-L1CUci-L2CUne-': ['2nd leg created'],
-        'L1CN-L1CUci-L2CUne-@': ['DUPLICATE DETECTED: IGNORING'],
-        'L1CN-L1CUci-L2CUne-L2CUci-': [''],
-        'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-': ['2nd leg connected'],
-        'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-': ['leg 1 connected'],
-        'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-L2CUcc-': ['leg 2 disconnected'],
-        'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-L2CUcc-L1CC-': ['leg 1 disconnected', '*'],
+        'L1CN-L1CUci-L2CUne-': ['SCREEN POP'],
+        'L1CN-L1CUci-L2CUne-@': [''], // Allow duplicate events of L2CUne
+        'L1CN-L1CUci-L2CUne-L2CUci-': ['PHONE EXTENSION RINGING'],
+        'L1CN-L1CUci-L2CUne-L2CUci- ': ['PHONE EXTENSION ANSWERED'],
+        'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-': [''],
+        'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-L2CUcc-': ['CALL ENDED', '*'],
+        'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-L2CUcc-L1CC-': [''],
 
         // //Call from cellular phone to a menu, typing extension number
         // // call new arrived after call connecting
-        // 'L1CUci-' : [''],
-        // 'L1CUci-L1CN-': ['first leg created'],
-        // 'L1CUci-L1CN-L1CUco-': ['first leg connected'],
-        // 'L1CUci-L1CN-L1CUco-L2CUne-': ['leg 2 created'],
-        // 'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-': [''],
-        // 'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-@' : [''],
-        // 'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-L2CUco-' : ['leg 2 connected'],
-        // 'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-L2CUco-L1CC-': [''],
-        // 'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-L2CUco-L1CC-L2CUcc-': ['Good call ended', '*'],
-        //
-        // //Call from cellular phone to a menu, typing extension number
-        // 'L1CN-' : [''],
-        // 'L1CN-L1CUci-': [''],
-        // 'L1CN-L1CUci-L1CUco-': [''],
-        // 'L1CN-L1CUci-L1CUco-L2CUne-': [''],
-        // 'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-': [''],
-        // 'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-@': [''],
-        // 'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-L2CUco-': ['Good call connected'],
-        // 'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-L2CUco-L1CC-': [''],
-        // 'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-L2CUco-L1CC-L2CUcc-': ['Good call ended', '*'],
-        //
+        'L1CUci-' : [''],
+        'L1CUci-L1CN-': [''],
+        'L1CUci-L1CN-L1CUco-': [''],
+        'L1CUci-L1CN-L1CUco-L2CUne-': ['SCREEN POP'],
+        'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-': ['PHONE EXTENSION RINGING'],
+        'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-@' : [''],
+        'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-L2CUco-' : ['PHONE EXTENSION ANSWERED'],
+        'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-L2CUco-L1CC-': [''],
+        'L1CUci-L1CN-L1CUco-L2CUne-L2CUci-L2CUco-L1CC-L2CUcc-': ['CALL ENDED', '*'],
+
+        //Call from cellular phone to a menu, typing extension number
+        'L1CN-' : [''],
+        'L1CN-L1CUci-': [''],
+        'L1CN-L1CUci-L1CUco-': [''],
+        'L1CN-L1CUci-L1CUco-L2CUne-': ['SCREEN POP'],
+        'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-': ['PHONE EXTENSION RINGING'],
+        'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-@': [''],
+        'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-L2CUco-': ['PHONE EXTENSION ANSWERED'],
+        'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-L2CUco-L1CC-': [''],
+        'L1CN-L1CUci-L1CUco-L2CUne-L2CUci-L2CUco-L1CC-L2CUcc-': ['CALL ENDED', '*'],
+
         // // Call from communicator to cellular phone
-        // 'L1CN-' : [''],
-        // 'L1CN-L2CUne-': [''],
-        // 'L1CN-L2CUne-L1CUco-': [''],
-        // 'L1CN-L2CUne-L1CUco-L2CUco-': [''],
-        // 'L1CN-L2CUne-L1CUco-L2CUco-@': [''],
-        // 'L1CN-L2CUne-L1CUco-L2CUco-L2CUcc': [''],
-        // 'L1CN-L2CUne-L1CUco-L2CUco-L2CUcc-L1CUcc': ['Good call connected'],
-        // 'L1CN-L2CUne-L1CUco-L2CUco-L2CUcc-L1CUcc-L1CC-': ['Good call ended', '*'],
-        //
+        'L1CN-' : [''],
+        'L1CN-L2CUne-': ['SCREEN POP'],
+        'L1CN-L2CUne-L1CUco-': [''],
+        'L1CN-L2CUne-L1CUco-L2CUco-': ['PHONE EXTENSION ANSWERED'],
+        'L1CN-L2CUne-L1CUco-L2CUco-@': [''],
+        'L1CN-L2CUne-L1CUco-L2CUco-L2CUcc': [''],
+        'L1CN-L2CUne-L1CUco-L2CUco-L2CUcc-L1CUcc': ['CALL ENDED', '*'],
+        'L1CN-L2CUne-L1CUco-L2CUco-L2CUcc-L1CUcc-L1CC-': [''],
+
         //
         // // call from communicator to a cell phone
-        // 'L2CUne-' : [''],
-        // 'L2CUne-L1CUci-' : [''],
-        // 'L2CUne-L1CUci-L1CN-' : [''],
-        // 'L2CUne-L1CUci-L1CN-L2CUci-' : [''],
-        // 'L2CUne-L1CUci-L1CN-L2CUci-@' : [''],
-        // 'L2CUne-L1CUci-L1CN-L2CUci-L1CUcc-' : [''],
-        // 'L2CUne-L1CUci-L1CN-L2CUci-L1CUcc-L2CUcc-' : [''],
-        // 'L2CUne-L1CUci-L1CN-L2CUci-L1CUcc-L2CUcc-L1CC-' : ['']
+        'L2CUne-' : ['SCREEN POP'],
+        'L2CUne-L1CUci-' : [''],
+        'L2CUne-L1CUci-L1CN-' : [''],
+        'L2CUne-L1CUci-L1CN-L2CUci-' : ['PHONE EXTENSION RINGING'],
+        'L2CUne-L1CUci-L1CN-L2CUci-@' : [''],
+        'L2CUne-L1CUci-L1CN-L2CUci-L1CUcc-' : ['CALL ENDED', '*'],
+        'L2CUne-L1CUci-L1CN-L2CUci-L1CUcc-L2CUcc-' : [''],
+        'L2CUne-L1CUci-L1CN-L2CUci-L1CUcc-L2CUcc-L1CC-' : [''],
+
+        // call from mobile phone to extension, answered
+        'L2CUci-': ['PHONE EXTENSION RINGING'],
+        'L2CUci-L1CUco-': [''],
+        'L2CUci-L1CUco-L2CUco-': [''],
+        'L2CUci-L1CUco-L2CUco-L1CC': [''],
+
+        // another call from mobile phone to extension, answered
+        'L1CN-': [''],
+        'L1CN-L1CUci-':[''],
+        'L1CN-L1CUci-L2CUne-': ['SCREEN POP'],
+        'L1CN-L1CUci-L2CUne-L2CUci-': [''],
+        'L1CN-L1CUci-L2CUne-L2CUci-L2CUci-': ['PHONE EXTENSION RINGING'],
+        'L1CN-L1CUci-L2CUne-L2CUci-L2CUci-L2CUco-':['PHONE EXTENSION ANSWERED'],
+        'L1CN-L1CUci-L2CUne-L2CUci-L2CUci-L2CUco-L1CUco-': [''],
+        'L1CN-L1CUci-L2CUne-L2CUci-L2CUci-L2CUco-L1CUco-L1CUcc-':['CALL ENDED', '*'],
+        'L1CN-L1CUci-L2CUne-L2CUci-L2CUci-L2CUco-L1CUco-L1CUcc-L2CUcc-': [''],
+
+        //call from communicator to mobile phone
+        'L1CN-': [''],
+        'L1CN-L1CUci-': ['SCREEN POP'],
+        'L1CN-L1CUci-L2CUci-': ['DESTINATION NUMBER RINGING'],
+        'L1CN-L1CUci-L2CUci-L2CUco-': ['DESTINATION NUMBER ANSWERED'],
+        'L1CN-L1CUci-L2CUci-L2CUco-L1CUco-' : [''],
+        'L1CN-L1CUci-L2CUci-L2CUco-L1CUco-L2CUcc-': ['CALL ENDED', '*'],
+        'L1CN-L1CUci-L2CUci-L2CUco-L1CUco-L2CUcc-L1CC-': [''],
+
+        //call has two legs with different Call_ID
+        //call is from mobile phone to communicator
+        //problem: events come after Call completed
+        //needs to be retested after one has call id and not two separate legs
+        'L1CUci-': [''],
+        'L1CUci-L1CN-': [''],
+        'L1CUci-L1CN-L1CUco-':[''],
+        'L1CUci-L1CN-L1CUco-L1CC-': [''],
+        'L1CUci-L1CN-L1CUco-L1CC-L2CUci-': ['SCREEN POP'],
+        'L1CUci-L1CN-L1CUco-L1CC-L2CUci-L2CN': [''],
+        'L1CUci-L1CN-L1CUco-L1CC-L2CUci-L2CN-L2CC-': [''],
+        'L1CUci-L1CN-L1CUco-L1CC-L2CUci-L2CN-L2CC-L2CUco-':['']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

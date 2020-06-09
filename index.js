@@ -9,6 +9,9 @@ class Call {
 
         // history does not exist in dictionary
         if (!(eHistory in items)){
+            if(!(eHistory.includes('*'))){
+                console.log(callId, eHistory, 'Sequence of events not found')
+            }
             return ''
         }
 
@@ -19,9 +22,7 @@ class Call {
         // if reached end with *, then exit process. Nothing else happens if more events show up.
         if (end === '*') {
             console.log('Found the *, reached the end');
-            eHistory += '*';
-            console.log(eHistory)
-            process.exit();
+            await this.getEventHistory(callId, '*');
             return action;
         }
         return action;
@@ -36,10 +37,17 @@ class Call {
         let eHistory = eventHistoryDictionary[callId]['eventHistory'];
         let lastEvent = eventHistoryDictionary[callId]['lastEvent'];
         if (lastEvent === newEvent){
-            eHistory += '@';
-        }
-        // Building elements into the dictionary, else is added if lastEvent doesn't equal new event
-        else{
+            let end = eHistory[eHistory.length - 1];
+            if(end !== '@'){
+                eventHistoryDictionary[callId] = {'lastEvent' : newEvent, 'eventHistory': eHistory += '@'};
+            }
+        } else {
+            let end = eHistory[eHistory.length - 1];
+            if(end === '@'){
+                // if the history is equal to @ and event is different than previous event
+                // it will delete the @ and add the new event to history.
+                eHistory = eHistory.substring(0, eHistory.length - 1)
+            }
             eventHistoryDictionary[callId] = {'lastEvent' : newEvent, 'eventHistory': eHistory += newEvent};
         }
         console.log(eventHistoryDictionary)

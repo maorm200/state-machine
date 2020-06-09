@@ -1,7 +1,9 @@
 class Client {
     async process (call_id, event){
         const action = await index.EventHandler(call_id, event);
-        console.log(action)
+        if(action != ''){
+            console.log(call_id,action)
+        }
         return action;
     }
 }
