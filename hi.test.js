@@ -1,12 +1,37 @@
 const Index = require('./index');
 const Client = require('./client');
-
+const fs = require('fs');
 index = new Index();
 client = new Client();
 
 
+// read contents of the file
+const data = fs.readFileSync('requestinator.txt', 'UTF-8');
+
+// split the contents by new line
+const lines = data.split(/\r?\n/);
+let array = [];
+let newLine = '';
+
+// print all lines
+lines.forEach((line) => {
+    if(!(line.startsWith('X-') || line.startsWith('#') || line.startsWith('Headers')
+        || line.startsWith('Content-Type') || line.startsWith('Host') || line.startsWith('User-'))){
+        newLine += line;
+        if(newLine.endsWith('}}')){
+            array.push(newLine);
+            newLine = '';
+        }
+    }
+});
+
+
 // Tests normal state
 test('normal-state', async() => {
+    await client.process(array);
+});
+
+test('normal-state2', async() => {
     await client.process('Call 1' ,'L1CN-');
     await client.process('Call 1', 'L1CUci-');
     await client.process('Call 1', 'L2CUne-');
