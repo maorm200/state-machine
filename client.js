@@ -1,7 +1,7 @@
 class Client {
-
     async process (event){
-        //pass event to action
+        //reverse array of events to match correct order in requestinator
+        event = event.reverse();
         for(let JsonEvent of event){
             JsonEvent = JSON.parse(JsonEvent);
             const payload = JsonEvent['payload'];

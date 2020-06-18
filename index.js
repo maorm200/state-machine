@@ -10,7 +10,7 @@ class Call {
         // history does not exist in dictionary
         if (!(eHistory in items)){
             if(!(eHistory.includes('*'))){
-                console.log(callId, eHistory, 'Sequence of events not found')
+                console.log(callId, eHistory, "These sequence of events aren't found in dictionry")
             }
             return ''
         }
