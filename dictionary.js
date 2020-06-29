@@ -8,10 +8,45 @@ let items = {
         'L1CN-L1CUci-L2CUne-': ['SCREEN POP'],
         'L1CN-L1CUci-L2CUne-@': [''], // Allow duplicate events of L2CUne
         'L1CN-L1CUci-L2CUne-L2CUci-': ['PHONE EXTENSION RINGING'],
-        'L1CN-L1CUci-L2CUne-L2CUci- ': ['PHONE EXTENSION ANSWERED'],
-        'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-': [''],
+        'L1CN-L1CUci-L2CUne-L2CUci- ': [''],
+        'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-': ['PHONE EXTENSION ANSWERED'],
         'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-L2CUcc-': ['CALL ENDED', '*'],
         'L1CN-L1CUci-L2CUne-L2CUci-L2CUco-L1CUco-L2CUcc-L1CC-': [''],
+
+        //adam scenario: simulring communicator
+
+        'L1CN-': [''],
+        'L1CN-@': [''],
+        'L1CN-L1CUci-': [''],
+        'L1CN-L1CUci-L2CUci-': ['PHONE EXTENSION RINGING'],
+        'L1CN-L1CUci-L2CUci-L1CUco-': [''],
+        'L1CN-L1CUci-L2CUci-L1CUco-L2CUco-': ['PHONE EXTENSION ANSWERED'],
+        'L1CN-L1CUci-L2CUci-L1CUco-L2CUco-L1CC-': [''],
+
+
+        //adam scenario: menu transfer communicator
+        'L1CN-' : [''],
+        'L1CN-L1CUci-' : [''],
+        'L1CN-L1CUci-L1CUco-' : [''],
+        'L1CN-L1CUci-L1CUco-L2CUci-' : ['PHONE EXTENSION RINGING', 'SCREEN POP'],
+        'L1CN-L1CUci-L1CUco-L2CUci-L2CUco-' : ['PHONE EXTENSION ANSWERED'],
+        'L1CN-L1CUci-L1CUco-L2CUci-L2CUco-L1CC-': ['CALL ENDED', '*'],
+
+
+        //adam scenatio : menu transfer to mobile
+
+        'L1CN-': [''],
+        'L1CN-L1CUci-' : [''],
+        'L1CN-L1CUci-L1CUco-' : [''],
+        'L1CN-L1CUci-L1CUco-L1CC-' : [''],
+
+        //adam scenario: simulating pick up bug
+
+        'L1CN-' : [''],
+        'L1CN-L1CUci-' : [''],
+        'L1CN-L1CUci-L2CUci-' : ['PHONE EXTENSION RINGING'],
+        'L1CN-L1CUci-L2CUci-L1CUco-' : [''],
+        'L1CN-L1CUci-L2CUci-L1CUco-L1CC-' : [''],
 
         // //Call from cellular phone to a menu, typing extension number
         // // call new arrived after call connecting
@@ -76,8 +111,8 @@ let items = {
 
         //call from communicator to mobile phone
         'L1CN-': [''],
-        'L1CN-L1CUci-': ['SCREEN POP'],
-        'L1CN-L1CUci-L2CUci-': ['DESTINATION NUMBER RINGING'],
+        'L1CN-L1CUci-': [''],
+        'L1CN-L1CUci-L2CUci-': ['PHONE EXTENSION RINGING', 'SCREEN POP'],
         'L1CN-L1CUci-L2CUci-L2CUco-': ['DESTINATION NUMBER ANSWERED'],
         'L1CN-L1CUci-L2CUci-L2CUco-L1CUco-' : [''],
         'L1CN-L1CUci-L2CUci-L2CUco-L1CUco-L2CUcc-': ['CALL ENDED', '*'],
@@ -95,33 +130,6 @@ let items = {
         'L1CUci-L1CN-L1CUco-L1CC-L2CUci-L2CN': [''],
         'L1CUci-L1CN-L1CUco-L1CC-L2CUci-L2CN-L2CC-': [''],
         'L1CUci-L1CN-L1CUco-L1CC-L2CUci-L2CN-L2CC-L2CUco-':['']
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 };
 
 

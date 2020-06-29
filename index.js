@@ -10,7 +10,7 @@ class Call {
         // history does not exist in dictionary
         if (!(eHistory in items)){
             if(!(eHistory.includes('*'))){
-                console.log(callId, eHistory, "These sequence of events aren't found in dictionry")
+                console.log(callId, eHistory, "These sequence of events aren't found in the dictionry")
             }
             return ''
         }
@@ -19,7 +19,7 @@ class Call {
         let action = items[eHistory];
         let end = action[action.length - 1];
 
-        // if reached end with *, then exit process. Nothing else happens if more events show up.
+        // if reached end with *, then show that process is done. Nothing else happens if more events show up.
         if (end === '*') {
             console.log('Found the *, reached the end');
             await this.getEventHistory(callId, '*');
@@ -36,6 +36,7 @@ class Call {
         // Initialization of variables from the dictionary
         let eHistory = eventHistoryDictionary[callId]['eventHistory'];
         let lastEvent = eventHistoryDictionary[callId]['lastEvent'];
+        //Handling duplicate events coming one after another
         if (lastEvent === newEvent){
             let end = eHistory[eHistory.length - 1];
             if(end !== '@'){
@@ -48,9 +49,12 @@ class Call {
                 // it will delete the @ and add the new event to history.
                 eHistory = eHistory.substring(0, eHistory.length - 1)
             }
-            eventHistoryDictionary[callId] = {'lastEvent' : newEvent, 'eventHistory': eHistory += newEvent};
+            if (typeof newEvent !== 'object'){
+                eventHistoryDictionary[callId] = {'lastEvent' : newEvent, 'eventHistory': eHistory += newEvent};
+            }
         }
-        console.log(eventHistoryDictionary)
+        console.log('Event History:', eHistory)
+        console.log('Event Dictionary:', eventHistoryDictionary)
         return eHistory;
     }
 }

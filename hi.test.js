@@ -15,7 +15,7 @@ let newLine = '';
 
 // print all lines
 lines.forEach((line) => {
-    if(!(line.startsWith('X-') || line.startsWith('#') || line.startsWith('Headers')
+    if(!(line.startsWith('X-') || line.startsWith('#') || line.startsWith('Headers') || line.startsWith('chr-events')
         || line.startsWith('Content-Type') || line.startsWith('Host') || line.startsWith('User-'))){
         newLine += line;
         if(newLine.endsWith('}}')){
@@ -24,7 +24,6 @@ lines.forEach((line) => {
         }
     }
 });
-
 
 // Tests normal state
 test('normal-state', async() => {
@@ -215,23 +214,3 @@ test('communicator', async() => {
     await client.process('L2CUcc-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
     await client.process('L1CC-', '50e056d4-85df-41c2-85eb-b4123a7b26f6');
 })
-
-
-
-
-
-
-// Tests normal state with duplication of call connecting
-// test('normal-state-with-duplication', async() => {
-//     await client.process('L1CN-');
-//     await client.process('L1UCo-');
-//     await client.process('L1UCo-');
-//     await client.process('L1UCd-');
-//     await client.process('L1UCm-');
-// });
-
-
-//Tests call completed only
-// test('call-completed-only', async() => {
-//     await client.process('L1UCm-');
-// });
